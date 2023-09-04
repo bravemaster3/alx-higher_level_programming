@@ -1,2 +1,6 @@
 #!/bin/bash
-python3 -m compileall $PYFILE
+python3 <<EOF
+import py_compile
+
+py_compile.compile("$PYFILE", cfile="${PYFILE}c")
+EOF
