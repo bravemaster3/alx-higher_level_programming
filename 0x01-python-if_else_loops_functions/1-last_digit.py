@@ -9,4 +9,4 @@ elif last_digit == 0:
     suffix = "is 0"
 else:
     suffix = "is less than 6 and not 0"
-print(f'Last digit of number {number:d} is {last_digit:d} and {suffix}')
+print(f'Last digit of {number:d} is {last_digit:d} and {suffix}')
