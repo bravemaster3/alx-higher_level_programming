@@ -8,5 +8,5 @@ print_reversed_list_integer(my_list)
 my_list = []
 print_reversed_list_integer(my_list)
 
-my_list = [[1, 2], [3,4]]
+my_list = []
 print_reversed_list_integer(my_list)
