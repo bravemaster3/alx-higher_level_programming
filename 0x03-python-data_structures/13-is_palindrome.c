@@ -1,5 +1,5 @@
 #include "lists.h"
-
+#include <stdio.h>
 /**
  * is_palindrome - checks if a linked list is a palindrome
  * @head: double pointer to the head
@@ -7,34 +7,39 @@
  */
 int is_palindrome(listint_t **head)
 {
-	int len = list_len(head), *rev_list, i = 0;
-	listint_t *ptr;
+	int l = list_len(head), *a, i = 0, j = l / 2, n1, n2;
+	listint_t *ptr, *n;
 
-	if (len <= 1)
+	if (l <= 1)
 		return (1);
 	ptr = *head;
-	rev_list = malloc(sizeof(int) * len);
-	if (rev_list == NULL)
-		return (0);
+	a = malloc(sizeof(int) * l);
+	if (a == NULL)
+		return (-1);
 	while (ptr != NULL)
 	{
-		rev_list[len - 1 - i] = ptr->n;
+		if (i < l / 2)
+			a[i] = ptr->n;
 		i += 1;
-		ptr = ptr->next;
-	}
-	ptr = *head;
-	i = 0;
-	while (ptr != NULL)
-	{
-		if (ptr->n != rev_list[i])
+		if (i > l / 2)
 		{
-			free(rev_list);
-			return (0);
+			j -= 1;
+			n1 = ptr->n;
+			n = NULL;
+			if (ptr->next != NULL)
+			{
+				n2 = ptr->next->n;
+				n = ptr->next;
+			}
+			if ((l % 2 == 0 && a[j] != n1) || (n && l % 2 != 0 && a[j] != n2))
+			{
+				free(a);
+				return (0);
+			}
 		}
-		i += 1;
 		ptr = ptr->next;
 	}
-	free(rev_list);
+	free(a);
 	return (1);
 }
 
