@@ -14,6 +14,8 @@ int is_palindrome(listint_t **head)
 		return (1);
 	ptr = *head;
 	rev_list = malloc(sizeof(int) * len);
+	if (rev_list == NULL)
+		return (0);
 	while (ptr != NULL)
 	{
 		rev_list[len - 1 - i] = ptr->n;
