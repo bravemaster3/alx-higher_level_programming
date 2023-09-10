@@ -7,12 +7,13 @@
  */
 int is_palindrome(listint_t **head)
 {
-	int len = list_len(head), rev_list[len], i = 0;
+	int len = list_len(head), *rev_list, i = 0;
 	listint_t *ptr;
 
 	if (len <= 1)
 		return (1);
 	ptr = *head;
+	rev_list = malloc(sizeof(int) * len);
 	while (ptr != NULL)
 	{
 		rev_list[len - 1 - i] = ptr->n;
@@ -24,10 +25,14 @@ int is_palindrome(listint_t **head)
 	while (ptr != NULL)
 	{
 		if (ptr->n != rev_list[i])
+		{
+			free(rev_list);
 			return (0);
+		}
 		i += 1;
 		ptr = ptr->next;
 	}
+	free(rev_list);
 	return (1);
 }
 
