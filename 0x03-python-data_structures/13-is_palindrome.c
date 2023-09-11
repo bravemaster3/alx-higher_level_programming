@@ -1,5 +1,5 @@
 #include "lists.h"
-#include <stdio.h>
+
 /**
  * is_palindrome - checks if a linked list is a palindrome
  * @head: double pointer to the head
@@ -7,39 +7,30 @@
  */
 int is_palindrome(listint_t **head)
 {
-	int l = list_len(head), i = 0, j, n1, n2;
-	listint_t *ptr, *n, *cpy2 = NULL, **cpy = &cpy2;
+    int len = list_len(head), l = 3000, rev_list[l], i = l - 1;
+    listint_t *ptr;
 
-	if (l <= 1)
-		return (1);
-	ptr = *head;
-	while (ptr != NULL)
-	{
-		if (i < l / 2)
-			cpy2 = add_nodeint(cpy, ptr->n);
-		i += 1;
-		if (i > l / 2)
-		{
-			j = cpy2->n;
-			n1 = ptr->n;
-			n = NULL;
-			if (ptr->next != NULL)
-			{
-				n2 = ptr->next->n;
-				n = ptr->next;
-			}
-			if ((l % 2 == 0 && j != n1) || (n && l % 2 != 0 && j != n2))
-			{
-				free_listint(cpy2);
-				return (0);
-			}
-			if (cpy2->next)
-				cpy2 = cpy2->next;
-		}
-		ptr = ptr->next;
-	}
-	free_listint(cpy2);
-	return (1);
+    if (len <= 1)
+        return (1);
+    ptr = *head;
+    if (rev_list == NULL)
+        return (-1);
+    while (ptr != NULL)
+    {
+        rev_list[i] = ptr->n;
+        i--;
+        ptr = ptr->next;
+    }
+    ptr = *head;
+    i++;
+    while (ptr != NULL)
+    {
+        if (ptr->n != rev_list[i])
+            return (0);
+        i += 1;
+        ptr = ptr->next;
+    }
+    return (1);
 }
 
 /**
@@ -49,37 +40,16 @@ int is_palindrome(listint_t **head)
  */
 int list_len(listint_t **head)
 {
-	int len = 0;
-	listint_t *ptr;
+    int len = 0;
+    listint_t *ptr;
 
-	if (head == NULL)
-		return (len);
-	ptr = *head;
-	while (ptr != NULL)
-	{
-		ptr = ptr->next;
-		len += 1;
-	}
-	return (len);
-}
-
-/**
- * add_nodeint - adds a new node at the beginning of a listint_t list
- * @head: pointer to a pointer of the start of the list
- * @n: integer to be included in node
- * Return: address of the new element or NULL if it fails
- */
-listint_t *add_nodeint(listint_t **head, const int n)
-{
-	listint_t *new;
-
-	new = malloc(sizeof(listint_t));
-	if (new == NULL)
-		return (NULL);
-
-	new->n = n;
-	new->next = *head;
-	*head = new;
-
-	return (new);
+    if (head == NULL)
+        return (len);
+    ptr = *head;
+    while (ptr != NULL)
+    {
+        ptr = ptr->next;
+        len += 1;
+    }
+    return (len);
 }
