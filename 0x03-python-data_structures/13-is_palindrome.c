@@ -7,23 +7,20 @@
  */
 int is_palindrome(listint_t **head)
 {
-	int l = list_len(head), *a, i = 0, j = l / 2, n1, n2;
-	listint_t *ptr, *n;
+	int l = list_len(head), i = 0, j, n1, n2;
+	listint_t *ptr, *n, *cpy2 = NULL, **cpy = &cpy2;
 
 	if (l <= 1)
 		return (1);
 	ptr = *head;
-	a = malloc(sizeof(int) * l);
-	if (a == NULL)
-		return (-1);
 	while (ptr != NULL)
 	{
 		if (i < l / 2)
-			a[i] = ptr->n;
+			cpy2 = add_nodeint(cpy, ptr->n);
 		i += 1;
 		if (i > l / 2)
 		{
-			j -= 1;
+			j = cpy2->n;
 			n1 = ptr->n;
 			n = NULL;
 			if (ptr->next != NULL)
@@ -31,15 +28,17 @@ int is_palindrome(listint_t **head)
 				n2 = ptr->next->n;
 				n = ptr->next;
 			}
-			if ((l % 2 == 0 && a[j] != n1) || (n && l % 2 != 0 && a[j] != n2))
+			if ((l % 2 == 0 && j != n1) || (n && l % 2 != 0 && j != n2))
 			{
-				free(a);
+				free_listint(cpy2);
 				return (0);
 			}
+			if (cpy2->next)
+				cpy2 = cpy2->next;
 		}
 		ptr = ptr->next;
 	}
-	free(a);
+	free_listint(cpy2);
 	return (1);
 }
 
@@ -62,4 +61,25 @@ int list_len(listint_t **head)
 		len += 1;
 	}
 	return (len);
+}
+
+/**
+ * add_nodeint - adds a new node at the beginning of a listint_t list
+ * @head: pointer to a pointer of the start of the list
+ * @n: integer to be included in node
+ * Return: address of the new element or NULL if it fails
+ */
+listint_t *add_nodeint(listint_t **head, const int n)
+{
+	listint_t *new;
+
+	new = malloc(sizeof(listint_t));
+	if (new == NULL)
+		return (NULL);
+
+	new->n = n;
+	new->next = *head;
+	*head = new;
+
+	return (new);
 }
