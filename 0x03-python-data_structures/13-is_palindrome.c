@@ -7,30 +7,30 @@
  */
 int is_palindrome(listint_t **head)
 {
-    int len = list_len(head), rev_list[3000], i = 2999;
-    listint_t *ptr;
+	int len = list_len(head), rev_list[3000], i = 2999;
+	listint_t *ptr;
 
-    if (len <= 1)
-        return (1);
-    ptr = *head;
-    if (rev_list == NULL)
-        return (-1);
-    while (ptr != NULL)
-    {
-        rev_list[i] = ptr->n;
-        i--;
-        ptr = ptr->next;
-    }
-    ptr = *head;
-    i++;
-    while (ptr != NULL)
-    {
-        if (ptr->n != rev_list[i])
-            return (0);
-        i += 1;
-        ptr = ptr->next;
-    }
-    return (1);
+	if (len <= 1)
+		return (1);
+	ptr = *head;
+	if (rev_list == NULL)
+		return (-1);
+	while (ptr != NULL)
+	{
+		rev_list[i] = ptr->n;
+		i--;
+		ptr = ptr->next;
+	}
+	ptr = *head;
+	i++;
+	while (ptr != NULL)
+	{
+		if (ptr->n != rev_list[i])
+			return (0);
+		i += 1;
+		ptr = ptr->next;
+	}
+	return (1);
 }
 
 /**
@@ -40,16 +40,16 @@ int is_palindrome(listint_t **head)
  */
 int list_len(listint_t **head)
 {
-    int len = 0;
-    listint_t *ptr;
+	int len = 0;
+	listint_t *ptr;
 
-    if (head == NULL)
-        return (len);
-    ptr = *head;
-    while (ptr != NULL)
-    {
-        ptr = ptr->next;
-        len += 1;
-    }
-    return (len);
+	if (head == NULL)
+		return (len);
+	ptr = *head;
+	while (ptr != NULL)
+	{
+		ptr = ptr->next;
+		len += 1;
+	}
+	return (len);
 }
