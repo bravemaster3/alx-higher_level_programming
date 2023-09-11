@@ -7,7 +7,7 @@
  */
 int is_palindrome(listint_t **head)
 {
-	int len = list_len(head), rev_list[3000], i = 2999;
+	int len = list_len(head), rev_list[1500], i = 1499;
 	listint_t *ptr;
 
 	if (len <= 1)
