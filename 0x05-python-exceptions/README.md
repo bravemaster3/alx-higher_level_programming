@@ -1,0 +1,9 @@
+Errors and Exceptions
+```
+try:
+    ...
+except:
+    ...
+else:
+    ...
+```
