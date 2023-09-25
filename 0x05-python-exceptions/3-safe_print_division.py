@@ -5,8 +5,8 @@ def safe_print_division(a, b):
     except Exception:
         result = None
     finally:
-        if (result != None):
-            print("Inside result: {:.2f}".format(result))
-        else:
+        if (result is None):
             print("Inside result: {}".format(None))
+        else:
+            print("Inside result: {:.2f}".format(result))
         return result
