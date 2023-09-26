@@ -14,11 +14,17 @@ class Square:
 
     """
 
-    def __init__(self, size):
+    def __init__(self, size=0):
         """This is an initializer
 
         Args:
             __size: private argument, the size of a square
+            size is checked first, and error raised if necessary
 
         """
-        self.__size = size
+        if not isinstance(size, int):
+            raise TypeError("size must be an integer")
+        elif size < 0:
+            raise ValueError("size must be >= 0")
+        else:
+            self.__size = size
