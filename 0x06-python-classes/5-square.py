@@ -4,11 +4,6 @@
 This is a first class, and
 it has a method __init__ for setting its size
 
-Method __init__: This is an initializer
-    Args:
-        __size: private argument, the size of a square
-        size is checked first, and error raised if necessary
-
 """
 
 
@@ -20,6 +15,7 @@ class Square:
     """
 
     def __init__(self, size=0):
+
         if not isinstance(size, int):
             raise TypeError("size must be an integer")
         elif size < 0:
