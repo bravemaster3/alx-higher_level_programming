@@ -33,7 +33,10 @@ class Node:
             self.__next_node = value
 
     def __init__(self, data, next_node=None):
-        self.__data = data
+        if not isinstance(data, int):
+            raise TypeError("data must be an integer")
+        else:
+            self.__data = data
         self.__next_node = next_node
 
 
