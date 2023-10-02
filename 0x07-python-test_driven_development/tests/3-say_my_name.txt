@@ -33,6 +33,8 @@ Testing correct input:
     >>> say_my_name("Koffi Dodji", "Noumonvi")
     My name is Koffi Dodji Noumonvi
 
-Testing correct input:
+    >>> say_my_name("&@&", "()")
+    My name is &@& ()
+
     >>> say_my_name("Koffi Dodji")
     My name is Koffi Dodji 
