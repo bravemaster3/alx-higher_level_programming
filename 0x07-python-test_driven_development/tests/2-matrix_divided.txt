@@ -1,0 +1,71 @@
+# Tests for 2
+
+Importing the module to run tests
+    >>> matrix_divided = __import__("2-matrix_divided").matrix_divided
+
+Checking for module docstring:
+    >>> m = __import__("2-matrix_divided").__doc__
+    >>> len(m) > 1
+    True
+
+Checking for function docstring:
+    >>> m = __import__("2-matrix_divided").matrix_divided.__doc__
+    >>> len(m) > 1
+    True
+
+Testing non list input:
+    >>> print(matrix_divided(2, 3))
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    >>> print(matrix_divided({"item1": 2, "item2": 4}, 3))
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Testing empty matrix:
+    >>> print(matrix_divided([[]], 3))
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    >>> print(matrix_divided([], 7))
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Testing matrix with a different number of element in the rows:
+    >>> print(matrix_divided([[34, 54, 65], [34, 54]], 6))
+    Traceback (most recent call last):
+        ...
+    TypeError: Each row of the matrix must have the same size
+
+Checking that all elements of the matrix are int or float:
+    >>> print(matrix_divided(['a', 3], 5))
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    >>> print(matrix_divided([[4, 3], [5j, 5]], 5))
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+
+Testing non-number div:
+    >>> print(matrix_divided([[6, 5.6],[5, 6]], 5j))
+    Traceback (most recent call last):
+        ...
+    TypeError: div must be a number
+
+
+Testing div equals to 0
+    >>> print(matrix_divided([[6, 5.6],[5, 6]], 0))
+    Traceback (most recent call last):
+        ...
+    ZeroDivisionError: division by zero
+
+Testing a normal input
+    >>> print(matrix_divided([[8, 4.4],[8.8, 0]], 4))
+    [[2.0, 1.1], [2.2, 0.0]]

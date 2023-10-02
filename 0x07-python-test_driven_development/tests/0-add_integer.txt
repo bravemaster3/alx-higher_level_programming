@@ -1,0 +1,72 @@
+# Tests for 0
+
+Importing the function:
+    >>> add_integer = __import__('0-add_integer').add_integer
+
+Checking for module docstring:
+    >>> m = __import__('0-add_integer').__doc__
+    >>> len(m) > 1
+    True
+
+Checking for function docstring
+    >>> m = __import__('0-add_integer').add_integer.__doc__
+    >>> len(m) > 1
+    True
+
+Testing with no arguments:
+    >>> add_integer()
+    Traceback (most recent call last):
+        ...
+    TypeError: add_integer() missing 1 required positional argument: 'a'
+
+Adding two normal integers:
+    >>> add_integer(5, 4)
+    9
+
+Adding floats:
+    >>> add_integer(5.5, 4.5)
+    9
+
+Adding non numbers:
+    >>> add_integer(5.5, 'a')
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
+Adding non numbers:
+    >>> add_integer(5j, 4)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+Testing positive and negative:
+    >>> add_integer(5, -2)
+    3
+
+Testing negative and positive:
+    >>> add_integer(-10, 5)
+    -5
+
+Testing two negative values:
+    >>> add_integer(-10, -5)
+    -15
+
+List comprehension multiple values:
+    >>> [add_integer(i, i+1) for i in [2,3,4,5]]
+    [5, 7, 9, 11]
+
+Testing NaN:
+    >>> add_integer(2, float('nan'))
+    Traceback (most recent call last):
+        ...
+    ValueError: cannot convert float NaN to integer
+
+Testing Long numbers:
+    >>> add_integer(99999999999999999999999999999999999999, 1)
+    100000000000000000000000000000000000000
+
+Testing inf:
+    >>> add_integer(inf, 30)
+    Traceback (most recent call last):
+        ...
+    NameError: name 'inf' is not defined

@@ -1,0 +1,50 @@
+# Tests for 4
+
+Importing the module to run tests
+    >>> print_square = __import__('4-print_square').print_square
+
+Checking for module docstring:
+    >>> m = __import__('4-print_square').__doc__
+    >>> len(m) > 1
+    True
+
+Checking for function docstring:
+    >>> m = __import__('4-print_square').print_square.__doc__
+    >>> len(m) > 1
+    True
+
+printing square for non integer size
+    >>> print_square("I am good")
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
+
+printing square float input
+    >>> print_square(3.4)
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
+
+    >>> print_square(-3.4)
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
+
+printing square for negative integer
+    >>> print_square(-3)
+    Traceback (most recent call last):
+        ...
+    ValueError: size must be >= 0
+
+printing square for normal positive integer
+    >>> print_square(5)
+    #####
+    #####
+    #####
+    #####
+    #####
+
+printing square for 0 size
+    >>> print_square(0)
+
+

@@ -1,0 +1,40 @@
+# Tests for 5
+
+Importing the module:
+    >>> text_indentation = __import__("5-text_indentation").text_indentation
+
+Checking module docstring:
+    >>> m = __import__("5-text_indentation").__doc__
+    >>> len(m) > 1
+    True
+
+Checking module docstring:
+    >>> m = __import__("5-text_indentation").text_indentation.__doc__
+    >>> len(m) > 1
+    True
+
+Testing non string text input:
+    >>> text_indentation([5])
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+
+Testing multiple space following an indent symbol:
+    >>> text_indentation("I love it..    So much??")
+    I love it.
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+    So much?
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+
+Testing blank line at start and end of string:
+    >>> text_indentation("     Spaces before start. Now what?       ")
+    Spaces before start.
+    <BLANKLINE>
+    Now what?
+    <BLANKLINE>
+
+
