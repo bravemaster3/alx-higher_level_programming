@@ -11,3 +11,6 @@ except Exception as e:
 
 lc1 = LockedClass("Paul")
 print("My first name is {}".format(lc1.first_name))
+
+lc3 = LockedClass()
+print("My first name is {}".format(lc1.first_name))
