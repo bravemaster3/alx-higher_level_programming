@@ -8,3 +8,6 @@ try:
     lc.last_name = "Snow"
 except Exception as e:
     print("[{}] {}".format(e.__class__.__name__, e))
+
+lc1 = LockedClass("Paul")
+print("My first name is {}".format(lc1.first_name))
