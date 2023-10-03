@@ -9,7 +9,7 @@ class LockedClass:
 
     def __init__(self, first_name=None):
         "nothing during instanciation"
-        if (type(first_name) is str):
+        if (first_name):
             self.first_name = first_name
 
     def __setattr__(self, name, value):
