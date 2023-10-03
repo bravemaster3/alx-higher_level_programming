@@ -9,11 +9,11 @@ class LockedClass:
 
     def __init__(self):
         "nothing during instanciation"
-        pass
+        self.first_name = None
 
     def __setattr__(self, name, value):
         """setting attribute"""
         if name != "first_name":
-            raise AttributeError("{} object has no attribute '{}'"
+            raise AttributeError("'{}' object has no attribute '{}'"
                                  .format(self.__class__.__name__, name))
         super().__setattr__(name, value)
