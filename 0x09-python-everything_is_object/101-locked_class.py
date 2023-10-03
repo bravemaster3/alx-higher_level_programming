@@ -9,7 +9,8 @@ class LockedClass:
 
     def __init__(self, first_name=None):
         "nothing during instanciation"
-        super().__setattr__("first_name", first_name)
+        if first_name is not None:
+            super().__setattr__("first_name", first_name)
 
     def __setattr__(self, name, value):
         """setting attribute"""
