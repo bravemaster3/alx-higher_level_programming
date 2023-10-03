@@ -7,6 +7,10 @@ Locked class except for first_name attribute
 class LockedClass:
     """class definition here"""
 
+    def __init__(self):
+        "nothing during instanciation"
+        pass
+
     def __setattr__(self, name, value):
         """setting attribute"""
         if name != "first_name":
