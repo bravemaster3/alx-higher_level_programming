@@ -1,4 +1,4 @@
 #!/usr/bin/python3
-i = -1
 def magic_string():
-    global i; i += 1; return "BestSchool, " * i + "BestSchool"
+    magic_string.i = getattr(magic_string, "i", -1) + 1
+    return "BestSchool, " * magic_string.i + "BestSchool"

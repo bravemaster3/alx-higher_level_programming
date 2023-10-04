@@ -10,13 +10,13 @@ def matrix_divided(matrix, div):
     if type(matrix) is not list:
         raise TypeError("matrix must be a matrix (list of lists)"
                         " of integers/floats")
-    if len(matrix) == 0 or len(matrix[0]) == 0:
+    if len(matrix) == 0 or type(matrix[0]) is not list:
         raise TypeError("matrix must be a matrix (list of lists)"
                         " of integers/floats")
     height = len(matrix)
     width = len(matrix[0])
     for i in range(height):
-        if type(matrix[i]) is not list:
+        if type(matrix[i]) is not list or len(matrix[i]) == 0:
             raise TypeError("matrix must be a matrix (list of lists)"
                             " of integers/floats")
         if len(matrix[i]) != width:

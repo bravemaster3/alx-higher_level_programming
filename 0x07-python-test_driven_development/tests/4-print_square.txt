@@ -49,5 +49,3 @@ printing square for normal positive integer
 
 printing square for 0 size
     >>> print_square(0)
-
-
