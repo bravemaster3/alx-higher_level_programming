@@ -77,3 +77,12 @@ Testing a normal input
 
 Testing missing 2 arguments
     >>> print(matrix_divided(None, None))
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Testing missing 1 argument
+    >>> print(matrix_divided([[1, 2, 3], [4, 5, 6]], None))
+    Traceback (most recent call last):
+        ...
+    TypeError: div must be a number
