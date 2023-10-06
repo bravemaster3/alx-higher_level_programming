@@ -19,6 +19,16 @@ Testing with no arguments:
         ...
     TypeError: add_integer() missing 1 required positional argument: 'a'
 
+Testing with a single argument:
+    >>> add_integer(2)
+    100
+
+Testing float overflow:
+	>>> add_integer(1.0e308 * 20, 1.0e29)
+        Traceback (most recent call last):
+		...
+	OverflowError: cannot convert float infinity to integer
+
 Adding two normal integers:
     >>> add_integer(5, 4)
     9
