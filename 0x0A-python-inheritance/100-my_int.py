@@ -5,11 +5,10 @@ Rebel class MyInt from Int
 
 
 class MyInt(int):
-    def __eq__(self, other):
-        return self.area != other.area
+    """class definition here"""
 
     def __eq__(self, other):
-        return self.area != other.area
+        return not super().__eq__(other)
 
     def __ne__(self, other):
-        return self.area == other.area
+        return super().__eq__(other)
