@@ -4,21 +4,7 @@ definition of class BaseGeometry
 and also Rectangle...
 """
 
-
-class BaseGeometry():
-    """class definition starts here"""
-    pass
-
-    def area(self):
-        """area undefined, raises exception"""
-        raise Exception("area() is not implemented")
-
-    def integer_validator(self, name, value):
-        """validates that value is an integer"""
-        if type(value) is not int:
-            raise TypeError("{} must be an integer".format(name))
-        if value <= 0:
-            raise ValueError("{} must be greater than 0".format(name))
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 
 class Rectangle(BaseGeometry):

@@ -64,7 +64,6 @@ Testing no arguments
         ...
     TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
 
-
     >>> my_geom.integer_validator(name = None, value = None)
     Traceback (most recent call last):
         ...
@@ -74,7 +73,6 @@ Testing no arguments
     Traceback (most recent call last):
         ...
     TypeError:  must be an integer
-
 
 Testing the undefined function area()
     >>> my_geom.area()
