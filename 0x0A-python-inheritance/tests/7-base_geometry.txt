@@ -17,7 +17,7 @@ Testing non integer input to integer_validator
         ...
     TypeError: my_int must be an integer
 
-Testing negative and null input
+Testing negative
     >>> my_geom.integer_validator("my_int", -25)
     Traceback (most recent call last):
         ...
@@ -40,6 +40,24 @@ Testing zero
 
 Testing positive value
     >>> my_geom.integer_validator("my_int", 25)
+
+Testing float
+    >>> my_geom.integer_validator("my_float", 25.65)
+    Traceback (most recent call last):
+        ...
+    TypeError: my_float must be an integer
+
+    >>> my_geom.integer_validator("my_float", -25.65)
+    Traceback (most recent call last):
+        ...
+    TypeError: my_float must be an integer
+
+Testing no arguments
+    >>> my_geom.integer_validator()
+    Traceback (most recent call last):
+        ...
+    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
 
 Testing the undefined function area()
     >>> my_geom.area()
