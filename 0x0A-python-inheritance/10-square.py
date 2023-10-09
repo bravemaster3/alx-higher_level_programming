@@ -14,3 +14,7 @@ class Square(Rectangle):
         """instanciation statements here"""
         super().__init__(size, size)
         self.__size = size
+
+    def area(self):
+        """area implementation"""
+        return self.__size ** 2
