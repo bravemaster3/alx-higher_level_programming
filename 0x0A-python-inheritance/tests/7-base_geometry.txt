@@ -77,7 +77,7 @@ Testing the undefined function area()
     Exception: area() is not implemented
 
 Testing the undefined function area() with an argument
-    >>> my_geom.area(23)
+    >>> my_geom.area(area = 23)
     Traceback (most recent call last):
         ...
-    TypeError: area() takes 1 positional argument but 2 were given
+    TypeError: area() got an unexpected keyword argument 'area'
