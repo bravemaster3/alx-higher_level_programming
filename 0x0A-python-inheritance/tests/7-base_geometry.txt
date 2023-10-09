@@ -67,12 +67,17 @@ Testing no arguments
     >>> my_geom.integer_validator(name = None, value = None)
     Traceback (most recent call last):
         ...
-    TypeError: None must be an integer
+    Exception
 
     >>> my_geom.integer_validator(name = "", value = None)
     Traceback (most recent call last):
         ...
     TypeError:  must be an integer
+
+    >>> my_geom.integer_validator(name = 134, value = 45)
+    Traceback (most recent call last):
+        ...
+    Exception
 
 Testing the undefined function area()
     >>> my_geom.area()
