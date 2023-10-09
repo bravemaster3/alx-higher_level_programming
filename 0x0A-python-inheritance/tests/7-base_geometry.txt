@@ -52,6 +52,13 @@ Testing float
         ...
     TypeError: my_float must be an integer
 
+
+Testing complex numbers:
+    >>> my_geom.integer_validator("my_complex", -25.65)
+    Traceback (most recent call last):
+        ...
+    TypeError: my_float must be an integer
+
 Testing no arguments
     >>> my_geom.integer_validator()
     Traceback (most recent call last):
