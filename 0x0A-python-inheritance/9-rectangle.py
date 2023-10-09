@@ -19,7 +19,8 @@ class Rectangle(BaseGeometry):
 
     def area(self):
         """ area calculator"""
-        return self.__width * self.__height
+        if self.__width and self.__height:
+            return self.__width * self.__height
 
     def print(self):
         """prints a description of the rectangle"""
