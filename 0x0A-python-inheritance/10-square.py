@@ -14,3 +14,9 @@ class Square(Rectangle):
         """instanciation statements here"""
         super().__init__(size, size)
         self.__size = size
+
+    def __str__(self):
+        """returns a representation of the rectangle object"""
+        rect = "[{}] {}/{}".format("Rectangle",
+                                   self.__width, self.__height)
+        return rect
