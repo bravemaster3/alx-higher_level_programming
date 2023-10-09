@@ -29,6 +29,9 @@ Testing large negative
         ...
     ValueError: my_int must be greater than 0
 
+Testing large positive
+    >>> my_geom.integer_validator("my_int", 2567666666666666666666666666666666666666666)
+
 Testing zero
     >>> my_geom.integer_validator("my_int", 0)
     Traceback (most recent call last):
