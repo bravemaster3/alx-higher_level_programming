@@ -22,6 +22,14 @@ Testing negative and null input
     Traceback (most recent call last):
         ...
     ValueError: my_int must be greater than 0
+
+Testing large negative
+    >>> my_geom.integer_validator("my_int", -2567666666666666666666666666666666666666666)
+    Traceback (most recent call last):
+        ...
+    ValueError: my_int must be greater than 0
+
+Testing zero
     >>> my_geom.integer_validator("my_int", 0)
     Traceback (most recent call last):
         ...
