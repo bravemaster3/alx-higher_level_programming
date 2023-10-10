@@ -5,7 +5,9 @@ returns the JSON representation of a string
 """
 
 
+import json
+
+
 def to_json_string(my_obj):
-    import json
     """function definition"""
     return json.dumps(my_obj)
