@@ -37,6 +37,6 @@ class Student:
 
     def reload_from_json(self, json):
         """replaces all self's dict by json"""
-        self.__dict__ = {}
+        self.__dict__.clear()
         for key, value in json.items():
             setattr(self, key, value)
