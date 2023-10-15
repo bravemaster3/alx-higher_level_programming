@@ -6,6 +6,7 @@ that inherited from the Rectangle class
 """
 
 from models.square import Square
+from models.base import Base
 import unittest
 from io import StringIO
 import sys
@@ -179,3 +180,37 @@ class TestSquare(unittest.TestCase):
         self.assertIsNone(obj_dict.get("_Rectangle__height"))
         self.assertIsNone(obj_dict.get("_Rectangle__x"))
         self.assertIsNone(obj_dict.get("_Rectangle__y"))
+
+    def test_save_to_file(self):
+        """testing saving to file"""
+        r1 = Square(10)
+        r2 = Square(2, 4)
+        list_objs = [r1, r2]
+        Square.save_to_file(list_objs)
+        if list_objs is None or list_objs == []:
+            list_dict = []
+        else:
+            list_dict = [obj.to_dictionary() for obj in list_objs]
+        with open("Square.json", "r") as file:
+            saved_read = file.read()
+        self.assertEqual(Base.to_json_string(list_dict), saved_read)
+
+        list_objs = []
+        Square.save_to_file(list_objs)
+        if list_objs is None or list_objs == []:
+            list_dict = []
+        else:
+            list_dict = [obj.to_dictionary() for obj in list_objs]
+        with open("Square.json", "r") as file:
+            saved_read = file.read()
+        self.assertEqual(Base.to_json_string(list_dict), saved_read)
+
+        list_objs = None
+        Square.save_to_file(list_objs)
+        if list_objs is None or list_objs == []:
+            list_dict = []
+        else:
+            list_dict = [obj.to_dictionary() for obj in list_objs]
+        with open("Square.json", "r") as file:
+            saved_read = file.read()
+        self.assertEqual(Base.to_json_string(list_dict), saved_read)

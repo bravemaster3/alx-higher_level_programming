@@ -283,3 +283,62 @@ class TestRectangle(unittest.TestCase):
         self.assertIsNone(obj_dict.get("_Rectangle__height"))
         self.assertIsNone(obj_dict.get("_Rectangle__x"))
         self.assertIsNone(obj_dict.get("_Rectangle__y"))
+
+    def test_save_to_file(self):
+        """testing saving to file"""
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        list_objs = [r1, r2]
+        Rectangle.save_to_file(list_objs)
+        if list_objs is None or list_objs == []:
+            list_dict = []
+        else:
+            list_dict = [obj.to_dictionary() for obj in list_objs]
+        with open("Rectangle.json", "r") as file:
+            saved_read = file.read()
+        self.assertEqual(Base.to_json_string(list_dict), saved_read)
+
+        list_objs = []
+        Rectangle.save_to_file(list_objs)
+        if list_objs is None or list_objs == []:
+            list_dict = []
+        else:
+            list_dict = [obj.to_dictionary() for obj in list_objs]
+        with open("Rectangle.json", "r") as file:
+            saved_read = file.read()
+        self.assertEqual(Base.to_json_string(list_dict), saved_read)
+
+        list_objs = None
+        Rectangle.save_to_file(list_objs)
+        if list_objs is None or list_objs == []:
+            list_dict = []
+        else:
+            list_dict = [obj.to_dictionary() for obj in list_objs]
+        with open("Rectangle.json", "r") as file:
+            saved_read = file.read()
+        self.assertEqual(Base.to_json_string(list_dict), saved_read)
+
+    def test_from_json_string(self):
+        """testing loading json string to oject"""
+        list_input = [
+            {'id': 89, 'width': 10, 'height': 4},
+            {'id': 7, 'width': 1, 'height': 7}
+        ]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertEqual(type(list_input), type(list_output))
+        self.assertEqual(type(json_list_input), str)
+        self.assertEqual(list_input, list_output)
+
+        list_input = None
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertEqual(type(json_list_input), str)
+        self.assertIsNone(list_input)
+        self.assertEqual(list_output, [])
+
+        list_input = []
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertEqual(type(json_list_input), str)
+        self.assertEqual(list_input, list_output)

@@ -31,3 +31,14 @@ class TestBase(unittest.TestCase):
         """test for id = None to be the same as previous assigned"""
         obj4 = Base(4)
         self.assertEqual(obj4.id, 4)
+
+    def test_tojsonstring(self):
+        """testing the static method to_json_string"""
+        my_dict1 = {"id": 89, "width": 76}
+        my_dict2 = {"id": 76, "height": 34, "x": 1}
+        my_list_dict = [my_dict1, my_dict2]
+        json_my_list_dict = Base.to_json_string(my_list_dict)
+        self.assertNotEqual(my_list_dict, json_my_list_dict)
+        self.assertNotEqual(type(my_list_dict), type(json_my_list_dict))
+        self.assertEqual(type(my_list_dict), list)
+        self.assertEqual(type(json_my_list_dict), str)
