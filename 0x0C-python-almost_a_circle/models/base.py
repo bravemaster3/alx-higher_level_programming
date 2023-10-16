@@ -7,6 +7,7 @@ throughout the project
 
 import json
 import os
+import turtle
 
 
 class Base():
@@ -102,3 +103,80 @@ class Base():
             else:
                 list_obj.append(cls(spl[1], spl[2], spl[3], spl[4], spl[0]))
         return list_obj
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """draws rectangles and squares with the turtle graphics"""
+        tur = turtle.Turtle()
+
+        tur.penup()
+        tur.goto(-400, 400)
+        tur.pendown()
+
+        tur.color("green", "grey80")
+        offset_y = 0
+        for rect in list_rectangles:
+            if rect.y > 0:
+                tur.penup()
+                tur.right(180)
+                tur.forward(rect.y + offset_y)
+                tur.pendown()
+                offset_y += rect.y
+            if rect.x > 0:
+                tur.penup()
+                tur.left(90)
+                tur.forward(rect.x)
+                tur.pendown()
+            tur.begin_fill()
+            tur.forward(rect.width)
+            tur.right(90)
+            tur.forward(rect.height)
+            tur.right(90)
+            tur.forward(rect.width)
+            tur.right(90)
+            tur.forward(rect.height)
+            offset_y += rect.height
+            tur.end_fill()
+
+            tur.penup()
+            tur.left(90)
+            tur.forward(rect.x)
+            tur.right(90)
+            tur.pendown()
+
+        tur.penup()
+        tur.right(180)
+        tur.forward(rect.height)
+        tur.left(90)
+        tur.pendown()
+
+        for sq in list_squares:
+            if sq.y > 0:
+                tur.penup()
+                tur.right(180)
+                tur.forward(sq.y + offset_y)
+                tur.pendown()
+                offset_y += sq.y
+            if sq.x > 0:
+                tur.penup()
+                tur.left(90)
+                tur.forward(sq.x)
+                tur.pendown()
+            tur.begin_fill()
+            tur.forward(sq.size)
+            tur.right(90)
+            tur.forward(sq.size)
+            tur.right(90)
+            tur.forward(sq.size)
+            tur.right(90)
+            tur.forward(sq.size)
+            offset_y += sq.size
+            tur.end_fill()
+
+            tur.penup()
+            tur.left(90)
+            tur.forward(sq.x)
+            tur.right(90)
+            tur.pendown()
+
+        turtle.done()
