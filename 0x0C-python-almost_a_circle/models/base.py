@@ -51,10 +51,9 @@ class Base():
     @classmethod
     def create(cls, **dictionary):
         """creates a class from a dict of arguments"""
-        if dictionary:
-            dummy_inst = cls(1, 1)
-            dummy_inst.update(**dictionary)
-            return dummy_inst
+        dummy_inst = cls(1, 1)
+        dummy_inst.update(**dictionary)
+        return dummy_inst
 
     @classmethod
     def load_from_file(cls):
