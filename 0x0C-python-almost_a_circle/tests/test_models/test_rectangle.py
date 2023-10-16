@@ -342,3 +342,46 @@ class TestRectangle(unittest.TestCase):
         list_output = Rectangle.from_json_string(json_list_input)
         self.assertEqual(type(json_list_input), str)
         self.assertEqual(list_input, list_output)
+
+    def test_create(self):
+        """tests the creation of objs from dicts"""
+        r1 = Rectangle(5, 5, 3)
+        r1_dict = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dict)
+        self.assertFalse(r1 is r2)
+        self.assertFalse(r1 == r2)
+
+        my_dict = {'id': 13, 'size': 5, 'x': 5, 'y': 3}
+        r2 = Rectangle.create(**my_dict)
+        self.assertFalse(r1 is r2)
+        self.assertFalse(r1 == r2)
+
+        """Not providing returns the dummy created instance"""
+        my_dict = {'id': 16}
+        r3 = Rectangle.create(**my_dict)
+        stdout_value = self.stdout_capturer(print, r3)
+        expected_output = """[Rectangle] (16) 0/0 - 1/1
+"""
+        self.assertEqual(expected_output, stdout_value)
+
+    def test_load_from_file(self):
+        """testing loading from file"""
+        r1 = Rectangle(10, 7, 2, 8, id="26")
+        r2 = Rectangle(2, 4, id="27")
+        list_rect_in = [r1, r2]
+        Rectangle.save_to_file(list_rect_in)
+        list_rect_out = Rectangle.load_from_file()
+
+        stdout_value = self.stdout_capturer(print, list_rect_out[0])
+        expected_output = """[Rectangle] (26) 2/8 - 10/7
+"""
+        self.assertEqual(expected_output, stdout_value)
+
+        stdout_value = self.stdout_capturer(print, list_rect_out[1])
+        expected_output = """[Rectangle] (27) 0/0 - 2/4
+"""
+        self.assertEqual(expected_output, stdout_value)
+
+        Rectangle.save_to_file([])
+        list_rect_out = Rectangle.load_from_file()
+        self.assertEqual(list_rect_out, [])

@@ -214,3 +214,46 @@ class TestSquare(unittest.TestCase):
         with open("Square.json", "r") as file:
             saved_read = file.read()
         self.assertEqual(Base.to_json_string(list_dict), saved_read)
+
+    def test_create(self):
+        """tests the creation of objs from dicts"""
+        s1 = Square(5, 5, 3)
+        s1_dict = s1.to_dictionary()
+        s2 = Square.create(**s1_dict)
+        self.assertFalse(s1 is s2)
+        self.assertFalse(s1 == s2)
+
+        my_dict = {'id': 13, 'size': 5, 'x': 5, 'y': 3}
+        s2 = Square.create(**my_dict)
+        self.assertFalse(s1 is s2)
+        self.assertFalse(s1 == s2)
+
+        """Not providing returns the dummy created instance"""
+        my_dict = {'id': 16}
+        s3 = Square.create(**my_dict)
+        stdout_value = self.stdout_capturer(print, s3)
+        expected_output = """[Square] (16) 1/0 - 1
+"""
+        self.assertEqual(expected_output, stdout_value)
+
+    def test_load_from_file(self):
+        """testing loading from file"""
+        s1 = Square(10, 2, 8, id="26")
+        s2 = Square(2, id="27")
+        list_rect_in = [s1, s2]
+        Square.save_to_file(list_rect_in)
+        list_rect_out = Square.load_from_file()
+
+        stdout_value = self.stdout_capturer(print, list_rect_out[0])
+        expected_output = """[Square] (26) 2/8 - 10
+"""
+        self.assertEqual(expected_output, stdout_value)
+
+        stdout_value = self.stdout_capturer(print, list_rect_out[1])
+        expected_output = """[Square] (27) 0/0 - 2
+"""
+        self.assertEqual(expected_output, stdout_value)
+
+        Square.save_to_file([])
+        list_rect_out = Square.load_from_file()
+        self.assertEqual(list_rect_out, [])
