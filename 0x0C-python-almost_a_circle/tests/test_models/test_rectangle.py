@@ -378,26 +378,42 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(list_rect_out, [])
 
     def test_save_to_file_csv(self):
-        """testing saving to file"""
-        r1 = Rectangle(10, 7, 2, 8)
-        r2 = Rectangle(2, 4)
+        """testing saving to file csv"""
+        r1 = Rectangle(10, 7, 2, 8, id=77)
+        r2 = Rectangle(2, 4, id=78)
         list_objs = [r1, r2]
-        Rectangle.save_to_file(list_objs)
-        list_dict = [obj.to_dictionary() for obj in list_objs]
-        with open("Rectangle.json", "r") as file:
-            saved_read = file.read()
-        self.assertEqual(Base.to_json_string(list_dict), saved_read)
+        Rectangle.save_to_file_csv(list_objs)
+        with open("Rectangle.csv", "r") as file:
+            saved_read = file.readlines()
+        self.assertEqual("77,10,7,2,8", saved_read[0].strip())
+        self.assertEqual("78,2,4,0,0", saved_read[1].strip())
 
         list_objs = []
-        Rectangle.save_to_file(list_objs)
+        Rectangle.save_to_file_csv(list_objs)
         list_dict = []
-        with open("Rectangle.json", "r") as file:
-            saved_read = file.read()
-        self.assertEqual(Base.to_json_string(list_dict), saved_read)
+        with open("Rectangle.csv", "r") as file:
+            saved_read = file.readlines()
+        self.assertEqual("", saved_read[0].strip())
 
-        list_objs = None
-        Rectangle.save_to_file(list_objs)
+        Rectangle.save_to_file_csv(list_objs)
         list_dict = []
-        with open("Rectangle.json", "r") as file:
-            saved_read = file.read()
-        self.assertEqual(Base.to_json_string(list_dict), saved_read)
+        with open("Rectangle.csv", "r") as file:
+            saved_read = file.readlines()
+        self.assertEqual("", saved_read[0].strip())
+
+    def test_load_from_file_csv(self):
+        """testing load from file"""
+        r1 = Rectangle(10, 7, 2, 8, id=77)
+        r2 = Rectangle(2, 4, id=78)
+        list_objs = [r1, r2]
+        Rectangle.save_to_file_csv(list_objs)
+        list_rect_out = Rectangle.load_from_file_csv()
+
+        stdout_value = self.stdout_capturer(print, list_rect_out[0])
+        expected_output = """[Rectangle] (77) 2/8 - 10/7
+"""
+        self.assertEqual(expected_output, stdout_value)
+
+        stdout_value = self.stdout_capturer(print, list_rect_out[1])
+        expected_output = """[Rectangle] (78) 0/0 - 2/4
+"""

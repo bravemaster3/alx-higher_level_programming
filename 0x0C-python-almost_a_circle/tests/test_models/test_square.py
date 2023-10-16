@@ -257,3 +257,45 @@ class TestSquare(unittest.TestCase):
         Square.save_to_file([])
         list_rect_out = Square.load_from_file()
         self.assertEqual(list_rect_out, [])
+
+    def test_save_to_file_csv(self):
+        """testing saving to file csv"""
+        r1 = Square(10, 2, 8, id=77)
+        r2 = Square(2, id=78)
+        list_objs = [r1, r2]
+        Square.save_to_file_csv(list_objs)
+        with open("Square.csv", "r") as file:
+            saved_read = file.readlines()
+        self.assertEqual("77,10,2,8", saved_read[0].strip())
+        self.assertEqual("78,2,0,0", saved_read[1].strip())
+
+        list_objs = []
+        Square.save_to_file_csv(list_objs)
+        list_dict = []
+        with open("Square.csv", "r") as file:
+            saved_read = file.readlines()
+        self.assertEqual("", saved_read[0].strip())
+
+        Square.save_to_file_csv(list_objs)
+        list_dict = []
+        with open("Square.csv", "r") as file:
+            saved_read = file.readlines()
+        self.assertEqual("", saved_read[0].strip())
+
+    def test_load_from_file_csv(self):
+        """testing load from file"""
+        r1 = Square(10, 2, 8, id=77)
+        r2 = Square(2, id=78)
+        list_objs = [r1, r2]
+        Square.save_to_file_csv(list_objs)
+        list_sq_out = Square.load_from_file_csv()
+
+        stdout_value = self.stdout_capturer(print, list_sq_out[0])
+        expected_output = """[Square] (77) 2/8 - 10
+"""
+        self.assertEqual(expected_output, stdout_value)
+
+        stdout_value = self.stdout_capturer(print, list_sq_out[1])
+        expected_output = """[Square] (78) 0/0 - 2
+"""
+        self.assertEqual(expected_output, stdout_value)
