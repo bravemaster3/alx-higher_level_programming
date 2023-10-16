@@ -25,8 +25,7 @@ class Base():
     @staticmethod
     def to_json_string(list_dictionaries):
         """converts a list of dict to json string"""
-        if list_dictionaries and len(list_dictionaries) > 0 and\
-                len(list_dictionaries[0]) > 0:
+        if list_dictionaries and type(list_dictionaries) is list:
             return json.dumps(list_dictionaries)
         else:
             return "[]"
@@ -107,10 +106,10 @@ class Base():
     @staticmethod
     def draw(list_rectangles, list_squares):
         """draws rectangles and squares with the turtle graphics"""
-        tur = turtle.Turtle()
+        tur = turtle.Turtle(shape="turtle")
 
         tur.penup()
-        tur.goto(-400, 400)
+        tur.goto(-475, 410)
         tur.pendown()
 
         tur.color("green", "grey80")
@@ -135,7 +134,7 @@ class Base():
             tur.forward(rect.width)
             tur.right(90)
             tur.forward(rect.height)
-            offset_y += rect.height
+            offset_y = rect.height
             tur.end_fill()
 
             tur.penup()
@@ -150,6 +149,8 @@ class Base():
         tur.left(90)
         tur.pendown()
 
+        offset_y = 0
+        tur.color("red", "cyan")
         for sq in list_squares:
             if sq.y > 0:
                 tur.penup()
@@ -170,7 +171,7 @@ class Base():
             tur.forward(sq.size)
             tur.right(90)
             tur.forward(sq.size)
-            offset_y += sq.size
+            offset_y = sq.size
             tur.end_fill()
 
             tur.penup()

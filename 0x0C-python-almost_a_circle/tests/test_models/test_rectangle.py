@@ -290,30 +290,21 @@ class TestRectangle(unittest.TestCase):
         r2 = Rectangle(2, 4)
         list_objs = [r1, r2]
         Rectangle.save_to_file(list_objs)
-        if list_objs is None or list_objs == []:
-            list_dict = []
-        else:
-            list_dict = [obj.to_dictionary() for obj in list_objs]
+        list_dict = [obj.to_dictionary() for obj in list_objs]
         with open("Rectangle.json", "r") as file:
             saved_read = file.read()
         self.assertEqual(Base.to_json_string(list_dict), saved_read)
 
         list_objs = []
         Rectangle.save_to_file(list_objs)
-        if list_objs is None or list_objs == []:
-            list_dict = []
-        else:
-            list_dict = [obj.to_dictionary() for obj in list_objs]
+        list_dict = []
         with open("Rectangle.json", "r") as file:
             saved_read = file.read()
         self.assertEqual(Base.to_json_string(list_dict), saved_read)
 
         list_objs = None
         Rectangle.save_to_file(list_objs)
-        if list_objs is None or list_objs == []:
-            list_dict = []
-        else:
-            list_dict = [obj.to_dictionary() for obj in list_objs]
+        list_dict = []
         with open("Rectangle.json", "r") as file:
             saved_read = file.read()
         self.assertEqual(Base.to_json_string(list_dict), saved_read)
@@ -385,3 +376,28 @@ class TestRectangle(unittest.TestCase):
         Rectangle.save_to_file([])
         list_rect_out = Rectangle.load_from_file()
         self.assertEqual(list_rect_out, [])
+
+    def test_save_to_file_csv(self):
+        """testing saving to file"""
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        list_objs = [r1, r2]
+        Rectangle.save_to_file(list_objs)
+        list_dict = [obj.to_dictionary() for obj in list_objs]
+        with open("Rectangle.json", "r") as file:
+            saved_read = file.read()
+        self.assertEqual(Base.to_json_string(list_dict), saved_read)
+
+        list_objs = []
+        Rectangle.save_to_file(list_objs)
+        list_dict = []
+        with open("Rectangle.json", "r") as file:
+            saved_read = file.read()
+        self.assertEqual(Base.to_json_string(list_dict), saved_read)
+
+        list_objs = None
+        Rectangle.save_to_file(list_objs)
+        list_dict = []
+        with open("Rectangle.json", "r") as file:
+            saved_read = file.read()
+        self.assertEqual(Base.to_json_string(list_dict), saved_read)
