@@ -67,3 +67,38 @@ class Base():
         all_dicts = cls.from_json_string(content)
         list_obj = [cls.create(**elem) for elem in all_dicts]
         return list_obj
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """saves a list of objects to a csv file"""
+        if not list_objs or list_objs == []:
+            serialized = "\n"
+        else:
+            serialized = ""
+            for obj in list_objs:
+                if hasattr(obj, "size"):
+                    el = "{},{},{},{}".format(obj.id, obj.size, obj.x, obj.y)
+                else:
+                    el = "{},{},{},{},{}".format(obj.id, obj.width, obj.height,
+                                                 obj.x, obj.y)
+                serialized += el + "\n"
+        filename = "{}.csv".format(cls.__name__)
+        with open(filename, "w") as f:
+            f.write(serialized)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """loads objects from csv file"""
+        filename = "{}.csv".format(cls.__name__)
+        with open(filename) as f:
+            all_lines = f.readlines()
+
+        list_obj = []
+        for line in all_lines:
+            split_line = line.strip().split(',')
+            spl = [int(x) for x in split_line]
+            if hasattr(cls, "size"):
+                list_obj.append(cls(spl[1], spl[2], spl[3], spl[0]))
+            else:
+                list_obj.append(cls(spl[1], spl[2], spl[3], spl[4], spl[0]))
+        return list_obj
