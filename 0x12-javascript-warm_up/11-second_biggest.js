@@ -6,7 +6,7 @@ let first;
 let swap;
 if (allArgs.length > 1) {
   first = parseInt(allArgs[0]); /* Number.MIN_SAFE_INTEGER */
-  sec = parseInt(allArgs[0]);
+  sec = parseInt(allArgs[1]);
   if (sec > first) {
     swap = first;
     first = sec;
