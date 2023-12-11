@@ -2,7 +2,7 @@
 /* Write a script that prints the first argument passed to it */
 const allArgs = process.argv.slice(2);
 let msg;
-if (allArgs.length === 0) {
+if (allArgs === '') {
   msg = 'No argument';
 } else {
   msg = allArgs[0];
