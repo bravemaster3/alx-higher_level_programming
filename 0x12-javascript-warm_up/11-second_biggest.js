@@ -5,8 +5,8 @@ let sec = 0;
 let first;
 let swap;
 if (allArgs.length > 1) {
-  first = allArgs[0]; /* Number.MIN_SAFE_INTEGER */
-  sec = allArgs[1];
+  first = parseInt(allArgs[0]); /* Number.MIN_SAFE_INTEGER */
+  sec = parseInt(allArgs[0]);
   if (sec > first) {
     swap = first;
     first = sec;
