@@ -3,7 +3,8 @@
 if the first argument can be converted to an integer: */
 const allArgs = process.argv.slice(2);
 const isInt = function (myVal) {
-  return (/^\d+\.*\d+$/.test(myVal));
+  /*return (/^\d+\.*\d+$/.test(myVal));*/
+  return !isNaN(parseInt(myVal));
 };
 let msg;
 if (isInt(allArgs[0])) {
