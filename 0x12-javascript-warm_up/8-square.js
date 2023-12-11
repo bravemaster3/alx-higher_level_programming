@@ -5,6 +5,6 @@ if (x === undefined || isNaN(parseInt(x))) {
   console.log('Missing size');
 } else {
   for (let i = 0; i < parseInt(x); i++) {
-    console.log('x'.repeat(x));
+    console.log('X'.repeat(x));
   }
 }
