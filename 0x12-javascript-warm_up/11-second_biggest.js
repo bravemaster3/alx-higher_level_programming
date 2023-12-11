@@ -12,12 +12,12 @@ if (allArgs.length > 1) {
     first = sec;
     sec = swap;
   }
-  for (i in allArgs) {
+  for (const i in allArgs) {
     if (parseInt(allArgs[i]) > first) {
       sec = first;
       first = parseInt(allArgs[i]);
     }
-    if (parseInt(allArgs[i]) != first && parseInt(allArgs[i]) > sec) {
+    if (parseInt(allArgs[i]) !== first && parseInt(allArgs[i]) > sec) {
       sec = parseInt(allArgs[i]);
     }
   }
