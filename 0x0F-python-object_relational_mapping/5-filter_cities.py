@@ -23,7 +23,7 @@ if __name__ == "__main__":
     all_len = len(all)
     for i in range(all_len):
         if i == all_len - 1:
-            print(all[i][0])
-        else:
             print(all[i][0], end='')
+        else:
+            print(all[i][0], end=', ')
     print()
