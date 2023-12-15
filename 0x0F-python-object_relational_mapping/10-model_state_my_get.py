@@ -21,7 +21,7 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    rows = session.query(State).filter(State.name == STATE).all()
+    rows = session.query(State).filter(State.name == STATE)
 
     if rows.count() > 0:
         # for i in rows:
