@@ -21,7 +21,7 @@ if __name__ == "__main__":
 
     first_row = session.query(State).first()
 
-    if first_row:
+    if first_row is not None:
         print("{}: {}".format(first_row.id, first_row.name))
 
     session.close
