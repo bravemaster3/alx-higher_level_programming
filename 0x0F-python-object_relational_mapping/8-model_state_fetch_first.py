@@ -23,5 +23,7 @@ if __name__ == "__main__":
 
     if first_row is not None:
         print("{}: {}".format(first_row.id, first_row.name))
+    else:
+        print("Nothing")
 
     session.close
