@@ -21,8 +21,7 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    rows = session.query(State).filter(State.name == STATE)\
-        .order_by(State.id.asc())
+    rows = session.query(State).filter(State.name == STATE).all()
 
     if rows.count() > 0:
         # for i in rows:
