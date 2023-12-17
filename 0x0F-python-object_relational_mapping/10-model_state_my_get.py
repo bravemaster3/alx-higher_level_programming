@@ -24,9 +24,8 @@ if __name__ == "__main__":
     rows = session.query(State).filter(State.name == STATE)
 
     if rows.count() > 0:
-        # for i in rows:
-        #     print("{}: {}".format(i.id, i.name))
-        print(rows.count())
+        for i in rows:
+            print(i.id)
     else:
         print("Not found")
 
