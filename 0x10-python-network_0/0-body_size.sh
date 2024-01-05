@@ -3,7 +3,7 @@
 # and displays the size of the body of the response
 
 #Extract the headers
-headers=$(curl -I "$1")
+headers=$(curl -I -s "$1")
 
 # Extract the content length
 echo "$headers" | grep -i "Content-Length" | awk '{print $2}'
