@@ -13,8 +13,8 @@ if __name__ == "__main__":
     my_url = sys.argv[1]
     req = urllib.request.Request(my_url)
     try:
-        response = urllib.request.urlopen(req)
-        print(response.read().decode('utf-8'))
+        with urllib.request.urlopen(req) as response:
+            print(response.read().decode('utf-8'))
     except URLError as e:
-        with hasattr(e, 'code'):
+        if hasattr(e, 'code'):
             print(f"Error code: {e.code}")
