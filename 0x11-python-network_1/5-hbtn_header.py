@@ -11,5 +11,6 @@ if __name__ == "__main__":
     import sys
     my_url = sys.argv[1]
     req = requests.get(my_url)
-    header = getattr(req.headers, 'X-Request-Id')
-    print(header)
+    if 'X-Request-Id' in req.headers:
+        header = req.headers['X-Request-Id']
+        print(header)
