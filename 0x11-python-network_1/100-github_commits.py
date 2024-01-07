@@ -13,7 +13,12 @@ if __name__ == "__main__":
     url = f"https://api.github.com/repos/{user}/{repos}/commits"
     response = requests.get(url, params={'per_page': 10})
     json_resp = response.json()
-    for commit in reversed(json_resp):
-        sha = commit["sha"]
-        author_name = commit["commit"]["author"]["name"]
-        print(f"{sha}: {author_name}")
+    try:
+        for commit in json_resp:
+            sha = commit["sha"]
+            author_name = commit["commit"]["author"]["name"]
+            # date = commit["commit"]["author"]["date"]
+            # print(f"{sha}: {author_name} {date}")
+            print(f"{sha}: {author_name}")
+    except Exception:
+        pass
