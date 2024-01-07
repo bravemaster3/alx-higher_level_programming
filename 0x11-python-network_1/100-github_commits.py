@@ -15,8 +15,8 @@ if __name__ == "__main__":
     json_resp = response.json()
     try:
         for commit in json_resp:
-            sha = commit["sha"]
-            author_name = commit["commit"]["author"]["name"]
+            sha = commit.get("sha")
+            author_name = commit.get("commit").get("author").get("name")
             # date = commit["commit"]["author"]["date"]
             # print(f"{sha}: {author_name} {date}")
             print(f"{sha}: {author_name}")
