@@ -11,6 +11,5 @@ if __name__ == "__main__":
     import sys
     my_url = sys.argv[1]
     req = requests.get(my_url)
-    print("Body response:")
     header = req.headers['X-Request-Id']
     print(header)
