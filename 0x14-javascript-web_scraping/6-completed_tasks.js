@@ -5,9 +5,6 @@ const url = process.argv[2];
 request(url, (error, response, body) => {
   if (!error) {
     const todos = JSON.parse(body);
-    // for (let i = 0; i < results.length; i++){
-    //     console.log(results[i].userId);
-    // }
     const completedUsers = todos.reduce((acc, todo) => {
       if (todo.completed) {
         if (acc[todo.userId]) {
